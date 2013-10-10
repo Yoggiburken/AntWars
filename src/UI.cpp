@@ -12,7 +12,7 @@ UI::UI()
 	
 	this->view.setSize(800,600);
 	this->view.setCenter(400,300);
-    this->font.loadFromFile("resources/VT323-Regular.ttf");
+    this->font.loadFromFile("../resources/VT323-Regular.ttf");
 }
 
 
