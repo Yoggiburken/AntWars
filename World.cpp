@@ -127,9 +127,9 @@ void World::update()
     }
 }
 
-void World::spawnFriendlySoldierminion(int i)
+void World::spawnFriendlySoldierminion(int base_number)
 {
     Minion* minion;
-    minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[i]->getPosition()), 1, 1);
+    minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[base_number]->getPosition()), 1, 1);
     this->friendly_minions.push_back(minion);
 }

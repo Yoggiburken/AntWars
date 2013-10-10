@@ -8,12 +8,13 @@ extern Time             elapsed_time;
 const unsigned short    SoldierMinion_base_damage   =   2;
 const unsigned short    SoldierMinion_base_health   =   10;
 const Vector2f          SoldierMinion_size(10,10);
-const double            PI = 3.14159265359;
+extern const double            PI;
 
 SoldierMinion::SoldierMinion(Color minion_color, Vector2f starting_position, unsigned int health_modifier, unsigned int damage_modifier)
 {
-    this->damage    =   SoldierMinion_base_damage * damage_modifier;
-    this->health    =   SoldierMinion_base_health * health_modifier;
+    this->damage    	=   SoldierMinion_base_damage * damage_modifier;
+    this->health    	=   SoldierMinion_base_health * health_modifier;
+	this->squad_number	=	squad_number;
 
     this->body.setFillColor(minion_color);
     this->body.setPosition(starting_position);

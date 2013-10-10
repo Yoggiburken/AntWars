@@ -16,7 +16,6 @@ private:
     std::vector<MinionBase*>                    friendly_bases;
     std::vector<std::vector<Minion*> >          enemy_minions;
     std::vector<Minion*>                        friendly_minions;
-
     sf::View                                    view;
     
     void                                        input();

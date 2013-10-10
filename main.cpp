@@ -3,6 +3,8 @@
 
 using namespace sf;
 
+extern const double PI = 3.14159265359; 
+
 RenderWindow app(VideoMode(800,600,32), "ClickAttack");
 Event event;
 Time  elapsed_time;
