@@ -13,7 +13,7 @@ TextureClass::TextureClass()
 
     while(!file.eof())
     {   
-        file>>hashname>>filepath; 
+        file>>filepath>>hashname; 
         temp.loadFromFile(filepath.c_str());
         textures.insert( std::pair<std::string, sf::Texture>(hashname, temp));
     }
