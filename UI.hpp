@@ -15,7 +15,7 @@ private:
     virtual void                draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
                                 UI();
-    void                        addText(std::string text, sf::Vector2f postition);
+    void                        addStaticText(std::string text, sf::Vector2f postition);
     void                        addTextPointer(sf::Text* text);
 };
 

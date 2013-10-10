@@ -14,4 +14,6 @@ int main()
 {
     app.setVerticalSyncEnabled(true);
     world.game();
+
+	return 0;
 }

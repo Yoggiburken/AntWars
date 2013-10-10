@@ -10,7 +10,7 @@ private:
 public:
     void            setPosition(sf::Vector2f position);
     void            setTexture(std::string hashname);
-    //bool            isClicked(); 
+	sf::FloatRect 	getLocalBounds() { return this->sprite.getLocalBounds(); }	
 };
 
 #endif
