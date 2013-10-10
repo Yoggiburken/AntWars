@@ -23,8 +23,7 @@ protected:
     unsigned int                health;
     MinionMovement              movement;
     Status                      status;
-	int							squad_number;
-    
+
     Targetable*                 target;
 
     sf::RectangleShape          body;
