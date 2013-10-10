@@ -9,8 +9,10 @@ UI::UI()
 {
     this->blue_button.setTexture("blue_button");
     this->blue_button.setPosition(Vector2f(0,730));
-
-    font.loadFromFile("resources/VT323-Regular.ttf");
+	
+	this->view.setSize(800,600);
+	
+    this->font.loadFromFile("resources/VT323-Regular.ttf");
 }
 
 
