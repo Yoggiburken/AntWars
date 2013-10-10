@@ -38,8 +38,8 @@ bool MinionBase::isClicked()
         Vector2f base_pos   = body.getPosition();
         Vector2f base_size  = body.getSize();
 
-        if(mouse_pos.x >= base_pos.x && mouse_pos.x <= base_pos.x + base_size.x) {
-            if(mouse_pos.y >= base_pos.y && mouse_pos.y <= base_pos.y + base_size.y) {
+        if(mouse_pos.x >= base_pos.x - base_size.x/2 && mouse_pos.x <= base_pos.x + base_size.x/2) {
+            if(mouse_pos.y >= base_pos.y - base_size.y/2 && mouse_pos.y <= base_pos.y + base_size.y/2) {
                 return true;
             }
         }
