@@ -15,7 +15,7 @@ for($i=0; $i<scalar @ARGV; $i++) {
 			print "File: added $ARGV[$i]\n\n";
 			$rowlength = 60;
 			print MYFILE "resources/$ARGV[$i]";
-			$rowlength = $rowlength - length("resources/$ARGV[$i]");
+			$rowlength = $rowlength - length("..resources/$ARGV[$i]");
 			for($j=0; $j<$rowlength; $j++) {
 				print MYFILE " ";
 			}
