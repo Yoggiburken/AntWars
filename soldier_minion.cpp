@@ -14,7 +14,7 @@ SoldierMinion::SoldierMinion(Color minion_color, Vector2f starting_position, uns
 {
     this->damage    	=   SoldierMinion_base_damage * damage_modifier;
     this->health    	=   SoldierMinion_base_health * health_modifier;
-	this->squad_number	=	squad_number;
+    this->squad_number	=	squad_number;
 
     this->body.setFillColor(minion_color);
     this->body.setPosition(starting_position);
