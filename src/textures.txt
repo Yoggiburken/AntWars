@@ -1,3 +1,3 @@
-../resources/blue_button.png                                   blue_button
-../resources/friendly_soldierminion.png                        friendly_soldierminion
-../resources/exit_button.png                                   exit_button
+resources/blue_button.png                                   blue_button
+resources/friendly_soldierminion.png                        friendly_soldierminion
+resources/exit_button.png                                   exit_button
