@@ -34,6 +34,7 @@ void World::game()
     
     this->current_zoom = 1;
     this->view.setCenter(400,300);
+    this->view.setSize(800,600);
     app.setView(this->view);
     Clock clock;
     while(app.isOpen())
