@@ -1,6 +1,6 @@
 #include"TextureClass.hpp"
 #include"World.hpp"
-//lol
+
 using namespace sf;
 
 RenderWindow app(VideoMode(800,600,32), "ClickAttack");
