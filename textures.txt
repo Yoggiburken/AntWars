@@ -1,0 +1,2 @@
+blue_button             resources/blue_button.png
+friendly_soldierminion  resources/friendly_soldierminion.png
