@@ -88,8 +88,12 @@ void World::game()
 
 void World::input()
 {
+	if(Keyboard::isKeyPressed(Keyboard::Escape)) {
+		app.close();	
+	}
+	
     if(Keyboard::isKeyPressed(Keyboard::W)) {
-        this->view.move(0,-this->map_scroll_speed*elapsed_time.asSeconds());
+    	this->view.move(0,-this->map_scroll_speed*elapsed_time.asSeconds());
     }
     if(Keyboard::isKeyPressed(Keyboard::S)) {
         this->view.move(0,this->map_scroll_speed*elapsed_time.asSeconds());
