@@ -26,7 +26,7 @@ void World::game()
     srand(time(NULL));
     
     Font    font;
-    font.loadFromFile("resources/VT323-Regular.ttf");
+    font.loadFromFile("../resources/VT323-Regular.ttf");
     Text no_minions("0",font);
     no_minions.setPosition(0,0);
     no_minions.setColor(Color::Black);
