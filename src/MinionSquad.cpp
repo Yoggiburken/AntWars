@@ -41,10 +41,10 @@ void MinionSquad::update()
 
 void MinionSquad::draw(RenderTarget& target, RenderStates states) const
 {
+	target.draw(this->body);
 	for(int i=0; i<squad.size(); i++) {
 		target.draw(*squad[i]);
 	}
-	target.draw(this->body);
 }
 
 bool MinionSquad::isFull()
