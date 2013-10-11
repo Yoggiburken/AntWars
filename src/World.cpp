@@ -1,6 +1,7 @@
 #include<cmath>
 #include<iostream>
 #include<sstream>
+#include<SFML/Audio.hpp>
 #include"../include/World.hpp"
 #include"../include/TextureClass.hpp"
 
@@ -10,6 +11,9 @@ extern RenderWindow 	app;
 extern Event        	event;
 extern Time         	elapsed_time;
 extern TextureClass 	TextureBucket;
+
+
+   	Sound 		minion_spawn;
 
 std::string itoa(double num)
 {
@@ -72,7 +76,11 @@ void World::game()
     no_minions.setPosition(0,0);
     no_minions.setColor(Color::Black);
     ui.addTextPointer(&no_minions);
-    
+   
+   	SoundBuffer buffer;
+	buffer.loadFromFile("../resources/spawn_minion.wav");
+	minion_spawn.setBuffer(buffer);
+	 
     this->current_zoom = 1;
     this->view.setCenter(400,300);
     this->view.setSize(800,600);
@@ -179,6 +187,7 @@ void World::spawnFriendlySoldierminion(int base_number)
 				Vector2f distance_to_base = friendly_squads[i].getPosition() - friendly_bases[base_number]->getPosition();
 				if(sqrt(pow(distance_to_base.x, 2) + pow(distance_to_base.x, 2)) < 3000) {
 					friendly_squads[i].addMinion(minion);
+					minion_spawn.play();
 					return;
 				}
 			}
@@ -186,6 +195,8 @@ void World::spawnFriendlySoldierminion(int base_number)
 	}
 	friendly_squads.push_back(MinionSquad(this->friendly_bases[base_number]->getPosition(), 5));
 	friendly_squads[friendly_squads.size()-1].addMinion(minion);
+	minion_spawn.play();
+	return;
 }
 
 int World::getNumberOfMinions()
