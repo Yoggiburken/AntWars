@@ -1,12 +1,14 @@
 #include<iostream>
 #include<sstream>
 #include"../include/World.hpp"
+#include"../include/TextureClass.hpp"
 
 using namespace sf;
 
-extern RenderWindow app;
-extern Event        event;
-extern Time         elapsed_time;
+extern RenderWindow 	app;
+extern Event        	event;
+extern Time         	elapsed_time;
+extern TextureClass 	TextureBucket;
 
 std::string itoa(double num)
 {
@@ -15,6 +17,44 @@ std::string itoa(double num)
     std::string s = ss.str();
 
     return s;
+}
+
+void World::intro()
+{
+    this->view.setCenter(400,300);
+    this->view.setSize(800,600);
+	app.setView(this->view);
+	Sprite firecan;
+	firecan.setTexture(TextureBucket.getTexture("firecan"));
+	firecan.setOrigin(firecan.getLocalBounds().width/2, firecan.getLocalBounds().height/2);
+	firecan.setPosition(400, 300);
+	Time	intro_time = seconds(4);
+	Clock 	clock;
+
+	double opacity = 255;
+
+	RectangleShape filter;
+	filter.setFillColor(Color(255,255,255,opacity));
+	filter.setSize(Vector2f(800,600));
+	filter.setOrigin(400,300);
+	filter.setPosition(400,300);
+
+	while(intro_time > seconds(0)) 
+	{
+		elapsed_time = clock.restart();
+		intro_time -= elapsed_time;
+		if(opacity >= 0) {
+			opacity -= 255/2*elapsed_time.asSeconds();
+			if(opacity < 0) {
+				opacity = 0;
+			}
+		}
+		filter.setFillColor(Color(255,255,255,opacity));
+		app.clear(Color::White);
+		app.draw(firecan);
+		app.draw(filter);
+		app.display();
+	}
 }
 
 void World::game()

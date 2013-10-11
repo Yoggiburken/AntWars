@@ -39,7 +39,7 @@ void SoldierMinion::update()
         if(this->status == 0) {
             this->movement.direction = Vector2f(100*cos((rand()%360)*PI/180), 100*sin((rand()%360)*PI/180));
         }
-        this->movement.next_move = seconds(2);
+        this->movement.next_move = milliseconds(rand()%2000+1);
     }
     this->body.move(this->movement.direction*elapsed_time.asSeconds());
     this->actor_sprites[0].move(this->movement.direction*elapsed_time.asSeconds());

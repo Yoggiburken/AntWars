@@ -14,8 +14,9 @@ World world;
 
 int main()
 {
-    app.setVerticalSyncEnabled(true);
-    world.game();
+	app.setVerticalSyncEnabled(true);
+    world.intro();
+	world.game();
 
 	return 0;
 }
