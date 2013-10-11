@@ -9,7 +9,7 @@ using namespace std;
 
 void Button::setTexture(string hashname)
 {
-    sprite.setTexture(TextureBucket.getTexture(hashname));
+    this->sprite.setTexture(TextureBucket.getTexture(hashname));
 	cout << hashname <<endl;
 }
 
