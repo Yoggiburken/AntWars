@@ -15,9 +15,9 @@ MinionSquad::MinionSquad(Vector2f position, int size)
 	this->movement.next_move = seconds(1);
 	this->status = IDLING;
 
-	this->body.setRadius(100);
+	this->body.setRadius(75);
 	this->body.setFillColor(Color(0,0,150,150));
-	this->body.setOrigin(100,100);
+	this->body.setOrigin(75,75);
 	this->body.setPosition(this->position);
 }
 
