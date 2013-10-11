@@ -21,10 +21,10 @@ MinionBase::MinionBase(sf::Vector2f starting_position, sf::Color MinionBase_colo
     this->minion_damage_modifier = MinionBase_minion_damage_modifier;
     this->minion_health_modifier = MinionBase_minion_health_modifier;
     
-    this->body.setPosition(starting_position);
     this->body.setFillColor(MinionBase_color);
     this->body.setSize(MinionBase_size);
     this->body.setOrigin(this->body.getSize().x/2, this->body.getSize().y/2);
+    this->body.setPosition(starting_position);
 }
 
 void MinionBase::update()

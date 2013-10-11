@@ -60,7 +60,7 @@ void World::intro()
 void World::game()
 {
     this->map_scroll_speed = 300;
-    MinionBase base(Vector2f(100,100), Color(Color::Green));
+    MinionBase base(Vector2f(400,300), Color(Color::Green));
     friendly_bases.push_back(&base);
     bool game = true;
     srand(time(NULL));
