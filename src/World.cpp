@@ -177,6 +177,9 @@ void World::spawnFriendlySoldierminion(int base_number)
 	for(int i=0; i<friendly_squads.size(); i++) {
 		if(!friendly_squads[i].isFull()) {
 			friendly_squads[i].addMinion(minion);
+			return;
 		}
 	}
+	friendly_squads.push_back(MinionSquad(this->friendly_bases[base_number]->getPosition(), 5));
+	friendly_squads[friendly_squads.size()-1].addMinion(minion);
 }

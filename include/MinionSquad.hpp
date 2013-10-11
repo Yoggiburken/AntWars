@@ -11,6 +11,8 @@ private:
 	MinionStatus				status;
 	sf::Vector2f				position;
 	Targetable*					target;
+
+	sf::CircleShape			body;
 	
 	virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:

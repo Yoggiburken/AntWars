@@ -10,17 +10,16 @@ class Minion : public Actor, public Targetable{
 protected:    
     unsigned int                health;
     MinionMovement              movement;
-    MinionStatus                      status;
+    MinionStatus               	status;
 
     Targetable*                 target;
 
-    sf::RectangleShape          body;
 
-    virtual void                draw(sf::RenderTarget &target, sf::RenderStates states) const {target.draw(body);}
+    virtual void                draw(sf::RenderTarget &target, sf::RenderStates states) const {}
 public:
     virtual void				update() {}
 	virtual void				update(sf::Vector2f squad_position) {}
-	virtual sf::Vector2f        getPosition() { return this->body.getPosition(); }
+	virtual sf::Vector2f        getPosition() {}
 };
 
 #endif
