@@ -21,7 +21,8 @@ private:
     void                                        input();
     void                                        update();
 public:
-    void                                        menu();
+    void										intro();
+	void                                        menu();
     void                                        game();
    
     void                                        spawnFriendlySoldierminion(int i);
