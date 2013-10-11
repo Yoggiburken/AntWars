@@ -9,8 +9,7 @@ using namespace std;
 
 void Button::setTexture(string hashname)
 {
-    sprite.setTexture(TextureBucket.getTexture(hashname));
-	cout << hashname <<endl;
+    this->sprite.setTexture(TextureBucket.getTexture(hashname));
 }
 
 void Button::setPosition(Vector2f position)
