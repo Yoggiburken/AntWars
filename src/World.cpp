@@ -100,7 +100,6 @@ void World::game()
         this->input();
         //update all actors
         
-        no_minions.setString(itoa(this->friendly_minions.size()));
         this->update();   
         //clear screen
         app.clear(Color::White);
@@ -117,8 +116,8 @@ void World::game()
                 app.draw(*this->enemy_minions[i][j]);
             }
         }
-        for(int i=0; i<this->friendly_minions.size(); i++) {
-            app.draw(*this->friendly_minions[i]);
+        for(int i=0; i<this->friendly_squads.size(); i++) {
+            app.draw(this->friendly_squads[i]);
         }
         app.draw(ui);
         //display frame
@@ -162,8 +161,8 @@ void World::update()
     for(int i=0; i<this->friendly_bases.size(); i++) {
         this->friendly_bases[i]->update();
     }
-    for(int i=0; i<this->friendly_minions.size(); i++) {
-        this->friendly_minions[i]->update();
+    for(int i=0; i<this->friendly_squads.size(); i++) {
+        this->friendly_squads[i].update();
     }
 }
 
@@ -171,5 +170,13 @@ void World::spawnFriendlySoldierminion(int base_number)
 {
     Minion* minion;
     minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[base_number]->getPosition()), 1, 1);
-    this->friendly_minions.push_back(minion);
+	if(friendly_squads.size() == 0) {
+		MinionSquad squad(this->friendly_bases[base_number]->getPosition(), 5);
+		friendly_squads.push_back(squad);
+	}
+	for(int i=0; i<friendly_squads.size(); i++) {
+		if(!friendly_squads[i].isFull()) {
+			friendly_squads[i].addMinion(minion);
+		}
+	}
 }

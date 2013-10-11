@@ -2,7 +2,7 @@
 #include"UI.hpp"
 #include"soldier_minion.hpp"
 #include"minion_base.hpp"
-
+#include"MinionSquad.hpp"
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
@@ -15,7 +15,7 @@ private:
     std::vector<MinionBase*>                    enemy_bases;
     std::vector<MinionBase*>                    friendly_bases;
     std::vector<std::vector<Minion*> >          enemy_minions;
-    std::vector<Minion*>                        friendly_minions;
+    std::vector<MinionSquad>                   	friendly_squads;
     sf::View                                    view;
     
     void                                        input();
