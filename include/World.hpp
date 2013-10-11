@@ -18,6 +18,8 @@ private:
     std::vector<MinionSquad>                   	friendly_squads;
     sf::View                                    view;
     
+
+	int											getNumberOfMinions();
     void                                        input();
     void                                        update();
 public:

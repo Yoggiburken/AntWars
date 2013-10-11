@@ -1,3 +1,4 @@
+#include<cmath>
 #include<iostream>
 #include<sstream>
 #include"../include/World.hpp"
@@ -99,7 +100,8 @@ void World::game()
         //read input
         this->input();
         //update all actors
-        
+		no_minions.setString(itoa(this->getNumberOfMinions()));
+		     
         this->update();   
         //clear screen
         app.clear(Color::White);
@@ -170,16 +172,27 @@ void World::spawnFriendlySoldierminion(int base_number)
 {
     Minion* minion;
     minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[base_number]->getPosition()), 1, 1);
-	if(friendly_squads.size() == 0) {
-		MinionSquad squad(this->friendly_bases[base_number]->getPosition(), 5);
-		friendly_squads.push_back(squad);
-	}
-	for(int i=0; i<friendly_squads.size(); i++) {
-		if(!friendly_squads[i].isFull()) {
-			friendly_squads[i].addMinion(minion);
-			return;
+	
+	if(friendly_squads.size() > 0) {
+		for(int i=0; i<friendly_squads.size(); i++) {
+			if(!friendly_squads[i].isFull()) {
+				Vector2f distance_to_base = friendly_squads[i].getPosition() - friendly_bases[base_number]->getPosition();
+				if(sqrt(pow(distance_to_base.x, 2) + pow(distance_to_base.x, 2)) < 3000) {
+					friendly_squads[i].addMinion(minion);
+					return;
+				}
+			}
 		}
 	}
 	friendly_squads.push_back(MinionSquad(this->friendly_bases[base_number]->getPosition(), 5));
 	friendly_squads[friendly_squads.size()-1].addMinion(minion);
+}
+
+int World::getNumberOfMinions()
+{
+	int no_minions =0;
+	for(int i=0; i<friendly_squads.size(); i++) {
+		no_minions +=this->friendly_squads[i].getNumberOfMinions();
+	}
+	return no_minions;
 }

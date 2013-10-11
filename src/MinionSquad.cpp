@@ -59,5 +59,8 @@ Minion& MinionSquad::getRandomMinion()
 {
 	return *this->squad[rand()%this->squad.size()];
 }
-	
-	bool						isFull();
+
+int MinionSquad::getNumberOfMinions()
+{
+	return this->squad.size();
+}

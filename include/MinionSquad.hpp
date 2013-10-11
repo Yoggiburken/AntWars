@@ -22,5 +22,6 @@ public:
 	
 	Minion&						getRandomMinion();
 	bool						isFull();
+	int							getNumberOfMinions();
 };
 #endif
