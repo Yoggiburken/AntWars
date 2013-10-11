@@ -1,13 +1,15 @@
 ## Variables ##
 CC=g++
-CPPFLAGS=-g -Wall
-CPPLIBS=-lsfml-graphics -lsfml-window -lsfml-system
-.SUFFIXES: .cpp
+CPPLIBS=-lsfml-graphics -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
 
-.cpp.o:
-	g++ $(CPPFLAGS) -c $<
+CPP_FILES := $(wildcard src/*.cpp)
+OBJ_FILES := $(addprefix obj/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-## Targets ##
+src/AntWars: $(OBJ_FILES)
+	g++ $(LD_FLAGS) -o $@ $^ $(CPPLIBS)
+ 
+obj/%.o: src/%.cpp
+	g++ -c -o $@ $<
 
-all: AntWars other
-
+clean:
+	rm $(OBJ_FILES) src/AntWars
