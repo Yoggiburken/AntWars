@@ -1,5 +1,6 @@
 #include"../include/TextureClass.hpp"
 #include"../include/button.hpp"
+#include<iostream>
 
 extern TextureClass TextureBucket;
 
@@ -9,6 +10,7 @@ using namespace std;
 void Button::setTexture(string hashname)
 {
     sprite.setTexture(TextureBucket.getTexture(hashname));
+	cout << hashname <<endl;
 }
 
 void Button::setPosition(Vector2f position)
