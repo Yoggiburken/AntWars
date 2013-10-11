@@ -46,7 +46,7 @@ void SoldierMinion::update(Vector2f squad_position)
 {
     this->movement.next_move -= elapsed_time;
 	Vector2f distance_to_squad = squad_position-this->actor_sprites[0].getPosition();
-	if(sqrt(pow(distance_to_squad.x, 2) + pow(distance_to_squad.y, 2)) > 100) {
+	if(sqrt(pow(distance_to_squad.x, 2) + pow(distance_to_squad.y, 2)) > 75) {
 		if(this->status == 0) {
 			this->movement.direction = distance_to_squad;
 		}
