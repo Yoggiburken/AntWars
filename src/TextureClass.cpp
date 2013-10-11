@@ -1,4 +1,5 @@
 #include<fstream>
+#include<iostream>
 #include"../include/TextureClass.hpp"
 
 using namespace std;
@@ -14,7 +15,7 @@ TextureClass::TextureClass()
     while(!file.eof())
     {   
         file>>filepath>>hashname; 
-        temp.loadFromFile(filepath.c_str());
+        temp.loadFromFile(filepath);
         textures.insert( std::pair<std::string, sf::Texture>(hashname, temp));
     }
 }
