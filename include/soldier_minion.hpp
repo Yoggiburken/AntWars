@@ -13,7 +13,7 @@ public:
     virtual void            update();
     virtual void			update(sf::Vector2f squad_position);
 	virtual void            attacked(int damage) {}
-
+	virtual sf::Vector2f	getPosition();
 };
 
 #endif

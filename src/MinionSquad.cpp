@@ -28,18 +28,13 @@ void MinionSquad::addMinion(Minion* minion)
 
 void MinionSquad::update()
 {
-    this->movement.next_move -= elapsed_time;
-    if(this->movement.next_move <= seconds(0)) {
-        if(this->status == 0) {
-			double x;
-			x=50*cos((rand()%360)*PI/180)*pow(-1,rand()%2);
-            this->movement.direction = Vector2f(x, sqrt((pow(50,2)-pow(x,2)))*pow(-1,rand()%2));
-        }
-        this->movement.next_move = seconds(2);
-    }
-	this->position = this->position + this->movement.direction*elapsed_time.asSeconds();
+	if(this->squad.size() > 0) {
+		this->squad[0]->update();
+	}
+	this->position	= this->squad[0]->getPosition();
 	this->body.setPosition(this->position);
-	for(int i=0; i<this->squad.size(); i++) {
+	
+	for(int i=1; i<this->squad.size(); i++) {
 		this->squad[i]->update(this->position);
 	}
 }

@@ -33,8 +33,8 @@ void SoldierMinion::update()
     if(this->movement.next_move <= seconds(0)) {
         if(this->status == 0) {
 			double x;
-			x=100*cos((rand()%360)*PI/180)*pow(-1,rand()%2);
-            this->movement.direction = Vector2f(x, sqrt((pow(100,2)-pow(x,2)))*pow(-1,rand()%2));
+			x=50*cos((rand()%360)*PI/180)*pow(-1,rand()%2);
+            this->movement.direction = Vector2f(x, sqrt((pow(50,2)-pow(x,2)))*pow(-1,rand()%2));
         }
         this->movement.next_move = seconds(2);
     }
@@ -62,4 +62,9 @@ void SoldierMinion::update(Vector2f squad_position)
 
     this->actor_sprites[0].move(this->movement.direction*elapsed_time.asSeconds());
     this->movement.next_move -= elapsed_time;
+}
+
+Vector2f SoldierMinion::getPosition()
+{
+	return actor_sprites[0].getPosition();
 }
