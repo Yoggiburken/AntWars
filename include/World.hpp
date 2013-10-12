@@ -4,6 +4,11 @@
 #include"minion_base.hpp"
 #include"MinionSquad.hpp"
 
+#ifndef	PACKET_TYPE 
+#define PACKET_TYPE
+enum PacketType {UPDATE_SQUAD = 0, ADD_SQUAD, UPDATE_MINION, ADD_MINION, REMOVE_MINION, UPDATE_BASE, ADD_PLAYER, REMOVE_PLAYER, ATTACK_MINION, ATTACK_BASE};
+#endif
+
 #ifndef WORLD_HPP
 #define WORLD_HPP
 class World {
