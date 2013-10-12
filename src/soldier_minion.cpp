@@ -42,7 +42,7 @@ void SoldierMinion::update()
     this->movement.next_move -= elapsed_time;
 }
 
-void SoldierMinion::update(Vector2f squad_position)
+void SoldierMinion::update(Vector2f squad_position, Vector2f squad_direction)
 {
     this->movement.next_move -= elapsed_time;
 	Vector2f distance_to_squad = squad_position-this->actor_sprites[0].getPosition();
@@ -60,7 +60,7 @@ void SoldierMinion::update(Vector2f squad_position)
         this->movement.next_move = seconds(2);
     }
 
-    this->actor_sprites[0].move(this->movement.direction*elapsed_time.asSeconds());
+    this->actor_sprites[0].move((this->movement.direction+squad_direction)*elapsed_time.asSeconds());
     this->movement.next_move -= elapsed_time;
 }
 

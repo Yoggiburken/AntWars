@@ -35,7 +35,7 @@ void MinionSquad::update()
 	this->body.setPosition(this->position);
 	
 	for(int i=1; i<this->squad.size(); i++) {
-		this->squad[i]->update(this->position);
+		this->squad[i]->update(this->position, this->movement.direction);
 	}
 }
 

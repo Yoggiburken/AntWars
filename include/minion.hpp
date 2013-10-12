@@ -18,7 +18,7 @@ protected:
     virtual void                draw(sf::RenderTarget &target, sf::RenderStates states) const {}
 public:
     virtual void				update() {}
-	virtual void				update(sf::Vector2f squad_position) {}
+	virtual void				update(sf::Vector2f squad_position, sf::Vector2f squad_direction) {}
 	virtual sf::Vector2f        getPosition() {}
 };
 
