@@ -11,8 +11,7 @@ private:
 	MinionStatus				status;
 	sf::Vector2f				position;
 	Targetable*					target;
-
-	sf::CircleShape			body;
+	sf::CircleShape				body;
 	
 	virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
@@ -20,8 +19,8 @@ public:
 	void						addMinion(Minion* minion);
 	void						update();
 	
-	Minion&						getRandomMinion();
 	bool						isFull();
 	int							getNumberOfMinions();
+	sf::Vector2f				getMinionPosition(int index);	
 };
 #endif

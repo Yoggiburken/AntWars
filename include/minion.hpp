@@ -17,9 +17,10 @@ protected:
 
     virtual void                draw(sf::RenderTarget &target, sf::RenderStates states) const {}
 public:
-    virtual void				update() {}
+    virtual void				attacked(unsigned int damage) {}
+	virtual void				update() {}
 	virtual void				update(sf::Vector2f squad_position, sf::Vector2f squad_direction) {}
-	virtual sf::Vector2f        getPosition() {}
+	virtual sf::Vector2f        getPosition() {return this->actor_sprites[0].getPosition();}
 };
 
 #endif

@@ -12,7 +12,7 @@ public:
                             SoldierMinion(sf::Color minion_color, sf::Vector2f starting_position, unsigned int health_modifier, unsigned int damage_modifier);
     virtual void            update();
     virtual void			update(sf::Vector2f squad_position, sf::Vector2f squad_direction);
-	virtual void            attacked(int damage) {}
+	virtual void            attacked(unsigned int damage);
 	virtual sf::Vector2f	getPosition();
 };
 

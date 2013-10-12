@@ -27,6 +27,15 @@ void SoldierMinion::draw(RenderTarget& target, RenderStates states) const
 {
     target.draw(this->actor_sprites[0]);
 }
+
+void SoldierMinion::attacked(unsigned int damage)
+{
+	this->health -= damage;
+	if(this->health <= 0) {
+		this->~SoldierMinion();
+	}
+}
+
 void SoldierMinion::update()
 {
     this->movement.next_move -= elapsed_time;

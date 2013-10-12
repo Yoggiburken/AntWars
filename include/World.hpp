@@ -4,6 +4,8 @@
 #include"soldier_minion.hpp"
 #include"minion_base.hpp"
 #include"MinionSquad.hpp"
+#include"EnemyBase.hpp"
+#include"EnemySquad.hpp"
 
 #ifndef	PACKET_TYPE 
 #define PACKET_TYPE
@@ -17,18 +19,27 @@ private:
     double                                      map_scroll_speed;
     double                                      current_zoom;    
     UI                                          ui;
-
-    std::vector<MinionBase*>                    friendly_bases;
+	
+	std::vector<EnemyBase>						enemy_bases;
+	std::vector<std::vector<EnemySquad>	>		enemy_squads;
+	std::vector<int>							add_minion_to_squadID;
+    std::vector<sf::Vector2f>					add_squad;
+	std::vector<MinionBase>						friendly_bases;
     std::vector<MinionSquad>                   	friendly_squads;
     sf::View                                    view;
     
 	bool										networking;
+	sf::Mutex									enemy_data_mutex;
+	sf::Mutex									friendly_data_mutex;
 	sf::Thread									network_thread;
 	sf::Packet									sending_packet;
 	sf::Packet									receiving_packet;
 	sf::IpAddress								server_address;
 	unsigned short 								server_port;
+	unsigned short								packet_type;
 	void										network();
+	void										createPacket(sf::Packet& packet);
+	void										parsePacket();
 
 	int											getNumberOfMinions();
     void                                        input();

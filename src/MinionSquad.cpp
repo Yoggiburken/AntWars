@@ -55,12 +55,12 @@ bool MinionSquad::isFull()
 	return false;
 }
 
-Minion& MinionSquad::getRandomMinion()
-{
-	return *this->squad[rand()%this->squad.size()];
-}
-
 int MinionSquad::getNumberOfMinions()
 {
 	return this->squad.size();
+}
+
+Vector2f MinionSquad::getMinionPosition(int index)
+{
+	return this->squad[index]->getPosition();
 }

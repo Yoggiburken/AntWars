@@ -78,7 +78,7 @@ void World::game()
 {
     this->map_scroll_speed = 300;
     MinionBase base(Vector2f(400,300), Color(Color::Green));
-    friendly_bases.push_back(&base);
+    friendly_bases.push_back(base);
     bool game = true;
     srand(time(NULL));
     
@@ -98,12 +98,15 @@ void World::game()
     this->view.setSize(800,600);
     app.setView(this->view);
     Clock clock;
-    while(app.isOpen())
+	
+	while(app.isOpen())
     {
         while(app.pollEvent(event))
         {
             if(event.type == Event::Closed) {
-                app.close();
+				this->networking = false;
+				this->network_thread.wait();
+				app.close();
             }
             if(event.type == Event::Resized) {
                 this->view.setSize(event.size.width, event.size.height);
@@ -118,7 +121,8 @@ void World::game()
         
         elapsed_time = clock.restart(); 
         //read input
-        this->input();
+		this->friendly_data_mutex.lock();
+		this->input();
         //update all actors
 		no_minions.setString(itoa(this->getNumberOfMinions()));
 		     
@@ -127,12 +131,15 @@ void World::game()
         app.clear(Color::White);
         
         //draw all 
-        for(int i=0; i<this->friendly_bases.size(); i++) {
-            app.draw(*this->friendly_bases[i]);
+		this->enemy_data_mutex.lock();
+		for(int i=0; i<this->friendly_bases.size(); i++) {
+            app.draw(this->friendly_bases[i]);
         }
         for(int i=0; i<this->friendly_squads.size(); i++) {
             app.draw(this->friendly_squads[i]);
         }
+		this->enemy_data_mutex.unlock();
+		this->friendly_data_mutex.unlock();
         app.draw(ui);
         //display frame
         app.display();
@@ -143,6 +150,7 @@ void World::input()
 {
 	if(Keyboard::isKeyPressed(Keyboard::Escape)) {
 		app.close();	
+        this->network_thread.terminate(); 
 	}
 	
     if(Keyboard::isKeyPressed(Keyboard::W)) {
@@ -163,7 +171,7 @@ void World::input()
     }
 
     for(int i=0; i<friendly_bases.size(); i++) {
-        if(friendly_bases[i]->isClicked()) {
+        if(friendly_bases[i].isClicked()) {
             this->spawnFriendlySoldierminion(i);
         }
     }
@@ -173,7 +181,7 @@ void World::input()
 void World::update()
 {
     for(int i=0; i<this->friendly_bases.size(); i++) {
-        this->friendly_bases[i]->update();
+        this->friendly_bases[i].update();
     }
     for(int i=0; i<this->friendly_squads.size(); i++) {
         this->friendly_squads[i].update();
@@ -183,22 +191,28 @@ void World::update()
 void World::spawnFriendlySoldierminion(int base_number)
 {
     Minion* minion;
-    minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[base_number]->getPosition()), 1, 1);
+    minion = new SoldierMinion(Color(Color::Black), Vector2f(friendly_bases[base_number].getPosition()), 1, 1);
 	
 	if(friendly_squads.size() > 0) {
 		for(int i=0; i<friendly_squads.size(); i++) {
 			if(!friendly_squads[i].isFull()) {
-				Vector2f distance_to_base = friendly_squads[i].getPosition() - friendly_bases[base_number]->getPosition();
+				Vector2f distance_to_base = friendly_squads[i].getPosition() - friendly_bases[base_number].getPosition();
 				if(sqrt(pow(distance_to_base.x, 2) + pow(distance_to_base.x, 2)) < 3000) {
 					friendly_squads[i].addMinion(minion);
 					minion_spawn.play();
+					this->add_minion_to_squadID.push_back(i);
 					return;
 				}
 			}
 		}
 	}
-	friendly_squads.push_back(MinionSquad(this->friendly_bases[base_number]->getPosition(), 5));
-	friendly_squads[friendly_squads.size()-1].addMinion(minion);
+	Vector2f squad_position = this->friendly_bases[base_number].getPosition();
+	this->friendly_squads.push_back(MinionSquad(squad_position, 5));
+	this->add_squad.push_back(squad_position);
+	
+	int index = friendly_squads.size()-1;
+	friendly_squads[index].addMinion(minion);
+	this->add_minion_to_squadID.push_back(index);
 	minion_spawn.play();
 	return;
 }

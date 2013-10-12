@@ -7,6 +7,9 @@ extern TextureClass TextureBucket;
 
 void Actor::draw(RenderTarget& target, RenderStates states) const
 {
+	for(int i=0; i<this->actor_sprites.size(); i++) {
+	target.draw(this->actor_sprites[i]);
+	}
 }
 
 void Actor::addSprite(std::string texture_name)
