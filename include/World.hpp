@@ -1,3 +1,4 @@
+#include<SFML/Network.hpp>
 #include<vector>
 #include"UI.hpp"
 #include"soldier_minion.hpp"
@@ -17,18 +18,24 @@ private:
     double                                      current_zoom;    
     UI                                          ui;
 
-    std::vector<MinionBase*>                    enemy_bases;
     std::vector<MinionBase*>                    friendly_bases;
-    std::vector<std::vector<Minion*> >          enemy_minions;
     std::vector<MinionSquad>                   	friendly_squads;
     sf::View                                    view;
     
+	bool										networking;
+	sf::Thread									network_thread;
+	sf::Packet									sending_packet;
+	sf::Packet									receiving_packet;
+	sf::IpAddress								server_address;
+	unsigned short 								server_port;
+	void										network();
 
 	int											getNumberOfMinions();
     void                                        input();
     void                                        update();
 public:
-    void										intro();
+    											World();
+	void										intro();
 	void                                        menu();
     void                                        game();
    

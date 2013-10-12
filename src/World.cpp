@@ -24,6 +24,14 @@ std::string itoa(double num)
     return s;
 }
 
+World::World() : network_thread(&World::network, this)
+{
+	this->networking		= true;
+	this->server_address 	= "127.0.0.1";
+	this->server_port		= 9655;
+	this->network_thread.launch();
+}
+
 void World::intro()
 {
     this->view.setCenter(400,300);
@@ -119,16 +127,8 @@ void World::game()
         app.clear(Color::White);
         
         //draw all 
-        for(int i=0; i<this->enemy_bases.size(); i++) {
-            app.draw(*this->enemy_bases[i]);
-        }
         for(int i=0; i<this->friendly_bases.size(); i++) {
             app.draw(*this->friendly_bases[i]);
-        }
-        for(int i=0; i<this->enemy_minions.size(); i++) {
-            for(int j=0; i<this->enemy_minions[i].size(); j++) {
-                app.draw(*this->enemy_minions[i][j]);
-            }
         }
         for(int i=0; i<this->friendly_squads.size(); i++) {
             app.draw(this->friendly_squads[i]);
